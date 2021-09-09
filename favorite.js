@@ -3,7 +3,7 @@ const INDEX_URL = BASE_URL + '/api/v1/movies/'
 const POSTER_URL = BASE_URL + '/posters/'
 const MOVIES_PER_PAGE = 12
 
-const movies = JSON.parse(localStorage.getItem('FavoriteMovie'))
+const movies = JSON.parse(localStorage.getItem('favoriteMovies'))
 let filteredMovies = []
 let showStyle = 0 //新增一個變數作為switch ，0 = Cards Style， 1 = List Style)
 let page = 1 // 預設頁碼為第一頁。頁碼器上的監聽，會依選擇的page來更新此變數，讓所有函式功能可以跟隨此頁碼

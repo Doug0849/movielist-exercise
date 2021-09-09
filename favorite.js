@@ -115,7 +115,7 @@ function removeFavorite(id) {
   if (movies.some(movie => movie.id === id)) {
     let favoriteIndex = movies.findIndex(movie => movie.id === id)
     movies.splice(favoriteIndex, 1)
-    localStorage.setItem('FavoriteMovie', JSON.stringify(movies))
+    localStorage.setItem('favoriteMovies', JSON.stringify(movies))
   }
   renderMovieList(getMoviesByPage(page))
   renderPaginator(movies.length)

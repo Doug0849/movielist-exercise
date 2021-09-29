@@ -79,7 +79,7 @@ function renderPaginator(amount) {
     rawHTML += `<li class="page-item "><a class="page-link" href="#" data-page="${page}">${page}</a></li>`
   }
   paginator.innerHTML = rawHTML
-  //每當產生頁碼時，標示正在哪一頁中，預設為第一頁
+  //每當產生頁碼時，標示正在那一頁中，預設為第一頁
   paginator.children[page - 1].firstElementChild.classList.add('bg-primary', 'text-white')
 }
 
@@ -189,6 +189,7 @@ searchForm.addEventListener('input', function onSearchFormSubmitted(event) {
     return alert('Cannot find movie with keyword : ' + keyword)
   }
   //否則就渲染過濾後的頁面及過濾後的電影
+  page = 1
   renderMovieList(getMoviesByPage(1))
   renderPaginator(filteredMovies.length)
 })
@@ -202,24 +203,26 @@ btnShowStyle.addEventListener('click', event => {
   if (event.target.matches('.btn-cards')) {
     //賦予變數 showStyle 為 0 ，並更改按鈕顏色樣式，之後執行renderMovieList，後面帶入第二個新引數showStyle
     showStyle = 0
-    btnList.classList.remove('text-primary')
-    btnList.classList.add('text-secondary')
-    btnCards.classList.remove('text-secondary')
-    btnCards.classList.add('text-primary')
+    btnList.classList.toggle('text-primary')
+    btnList.classList.toggle('text-secondary')
+    btnCards.classList.toggle('text-secondary')
+    btnCards.classList.toggle('text-primary')
     renderMovieList(getMoviesByPage(page))
     // 加入判斷式，如果選到清單
   } else if (event.target.matches('.btn-list')) {
     //賦予變數 showStyle 為 1 ，並更改按鈕顏色樣式，之後執行renderMovieList，後面帶入第二個新引數showStyle
     showStyle = 1
-    btnList.classList.remove('text-secondary')
-    btnList.classList.add('text-primary')
-    btnCards.classList.remove('text-primary')
-    btnCards.classList.add('text-secondary')
+    btnList.classList.toggle('text-secondary')
+    btnList.classList.toggle('text-primary')
+    btnCards.classList.toggle('text-primary')
+    btnCards.classList.toggle('text-secondary')
     renderMovieList(getMoviesByPage(page))
   } else {
     return
   }
 })
+
+
 
 //-------------------------------- Start ------------------------------------------//
 //取得電影資料，然後初步渲染資料至頁面上，產生頁碼
